@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz 19/5 - Chủ tịch Hồ Chí Minh</title>
+
+<title>Quiz IQ & EQ</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
@@ -24,7 +25,7 @@ body{
     overflow:hidden;
 
     background:
-    linear-gradient(rgba(80,0,0,0.75),rgba(20,0,0,0.88)),
+    linear-gradient(rgba(40,0,60,0.75),rgba(10,10,30,0.9)),
     url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop');
 
     background-size:cover;
@@ -37,7 +38,7 @@ body::before{
     position:absolute;
     width:700px;
     height:700px;
-    background:radial-gradient(circle,#ffd70055,transparent 70%);
+    background:radial-gradient(circle,#00e5ff44,transparent 70%);
     top:-150px;
     right:-150px;
     animation: glow 5s infinite alternate;
@@ -54,12 +55,14 @@ body::before{
     }
 }
 
+/* START SCREEN */
+
 .start-screen{
     position:fixed;
     inset:0;
 
     background:
-    linear-gradient(rgba(0,0,0,0.75),rgba(40,0,0,0.9)),
+    linear-gradient(rgba(0,0,0,0.75),rgba(20,20,40,0.9)),
     url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop');
 
     background-size:cover;
@@ -77,14 +80,14 @@ body::before{
     padding:50px;
     border-radius:25px;
     background:rgba(0,0,0,0.55);
-    border:2px solid rgba(255,215,0,0.3);
-    box-shadow:0 0 40px rgba(255,215,0,0.2);
+    border:2px solid rgba(0,229,255,0.3);
+    box-shadow:0 0 40px rgba(0,229,255,0.2);
 }
 
 .start-title{
     font-size:70px;
     font-weight:800;
-    color:#ffd700;
+    color:#00e5ff;
     margin-bottom:20px;
 }
 
@@ -103,28 +106,32 @@ body::before{
     font-weight:800;
     cursor:pointer;
 
-    background:linear-gradient(135deg,#ffd700,#ff9800);
+    background:linear-gradient(135deg,#00e5ff,#00bcd4);
 
-    color:#4b0000;
+    color:#001b24;
 
     transition:0.35s;
 }
 
 .start-btn:hover{
     transform:scale(1.05);
+    box-shadow:0 0 25px rgba(0,229,255,0.5);
 }
+
+/* QUIZ */
 
 .quiz-box{
     width:900px;
     max-width:95%;
-    background:rgba(10,10,10,0.82);
-    border:2px solid rgba(255,215,0,0.4);
+    background:rgba(10,10,20,0.88);
+    border:2px solid rgba(0,229,255,0.3);
     border-radius:22px;
     padding:40px;
     position:relative;
     z-index:10;
+
     box-shadow:
-    0 0 25px rgba(255,215,0,0.15),
+    0 0 25px rgba(0,229,255,0.15),
     0 0 70px rgba(0,0,0,0.7);
 
     display:none;
@@ -132,7 +139,7 @@ body::before{
 
 .top-title{
     text-align:center;
-    color:#ffd700;
+    color:#00e5ff;
     font-size:52px;
     font-weight:800;
     margin-bottom:10px;
@@ -146,8 +153,8 @@ body::before{
 }
 
 .question-box{
-    background:linear-gradient(135deg,#7a0000,#410000);
-    border-left:6px solid #ffd700;
+    background:linear-gradient(135deg,#16213e,#0f3460);
+    border-left:6px solid #00e5ff;
     padding:28px;
     border-radius:18px;
     margin-bottom:30px;
@@ -179,15 +186,15 @@ body::before{
 
 .answers button:hover{
     transform:translateY(-5px);
-    background:rgba(255,215,0,0.15);
+    background:rgba(0,229,255,0.15);
 }
 
 .correct{
-    background:linear-gradient(135deg,#00a63e,#005d22)!important;
+    background:linear-gradient(135deg,#00c853,#009624)!important;
 }
 
 .wrong{
-    background:linear-gradient(135deg,#c00000,#5f0000)!important;
+    background:linear-gradient(135deg,#ff1744,#b2102f)!important;
 }
 
 .result{
@@ -195,7 +202,7 @@ body::before{
     text-align:center;
     font-size:30px;
     font-weight:800;
-    color:#ffd700;
+    color:#00e5ff;
     min-height:40px;
 }
 
@@ -205,8 +212,8 @@ body::before{
     padding:18px;
     border:none;
     border-radius:18px;
-    background:linear-gradient(135deg,#ffd700,#ffae00);
-    color:#300000;
+    background:linear-gradient(135deg,#00e5ff,#00bcd4);
+    color:#001b24;
     font-size:22px;
     font-weight:800;
     cursor:pointer;
@@ -246,12 +253,12 @@ body::before{
     <div class="start-content">
 
         <div class="start-title">
-            QUIZ 19/5
+            QUIZ IQ & EQ
         </div>
 
         <div class="start-subtitle">
-            Chủ đề:<br>
-            Chủ tịch Hồ Chí Minh • IQ & EQ
+            Kiểm tra khả năng tư duy logic<br>
+            và trí tuệ cảm xúc của bạn
         </div>
 
         <button class="start-btn" id="startBtn">
@@ -265,11 +272,11 @@ body::before{
 <div class="quiz-box" id="quizBox">
 
     <div class="top-title">
-        QUIZ 19/5
+        QUIZ IQ & EQ
     </div>
 
     <div class="sub-title">
-        Chủ đề: Chủ tịch Hồ Chí Minh • Người trẻ • IQ & EQ thời đại AI
+        Chủ đề: IQ • EQ • Tư duy • Cảm xúc
     </div>
 
     <div class="question-box">
@@ -285,7 +292,7 @@ body::before{
     </button>
 
     <div class="footer">
-        Kỷ niệm ngày sinh Chủ tịch Hồ Chí Minh • 19/5
+        Bài Quiz kiểm tra IQ & EQ
     </div>
 
 </div>
@@ -295,58 +302,58 @@ body::before{
 const quizData = [
 
 {
-question:"IQ (Intelligence Quotient) đo lường khả năng nào của con người?",
+question:"IQ (Intelligence Quotient) chủ yếu dùng để đánh giá khả năng nào?",
 answers:[
-"Khả năng kiểm soát cảm xúc",
-"Khả năng tư duy, lập luận và giải quyết vấn đề",
-"Khả năng giao tiếp xã hội",
-"Khả năng thể chất và sức bền"
+"Khả năng giao tiếp",
+"Khả năng tư duy logic và giải quyết vấn đề",
+"Khả năng ca hát",
+"Khả năng chơi thể thao"
 ],
 correct:1
 },
 
 {
-question:"EQ (Emotional Quotient) quan trọng nhất ở điểm nào trong môi trường làm việc nhóm?",
+question:"EQ (Emotional Quotient) là chỉ số liên quan đến điều gì?",
 answers:[
-"Tính toán nhanh hơn đồng nghiệp",
-"Hiểu và quản lý cảm xúc bản thân, đồng cảm với người khác",
-"Ghi nhớ nhiều thông tin hơn",
-"Hoàn thành công việc độc lập không cần ai"
+"Tốc độ phản xạ",
+"Trí nhớ ngắn hạn",
+"Khả năng nhận biết và kiểm soát cảm xúc",
+"Sức mạnh cơ bắp"
 ],
-correct:1
+correct:2
 },
 
 {
-question:"Khi gặp thất bại, người có EQ cao thường phản ứng như thế nào?",
+question:"Người có EQ cao thường sẽ làm gì khi xảy ra mâu thuẫn?",
 answers:[
-"Bỏ cuộc ngay lập tức",
+"Tức giận và bỏ đi",
+"Bình tĩnh lắng nghe và giải quyết vấn đề",
 "Đổ lỗi cho người khác",
-"Nhìn nhận bình tĩnh, rút kinh nghiệm và tiếp tục cố gắng",
-"Tức giận và không kiểm soát được"
-],
-correct:2
-},
-
-{
-question:"Trong thời đại AI, sự kết hợp nào giúp con người phát triển bền vững nhất?",
-answers:[
-"Chỉ cần IQ cao để lập trình AI",
-"Chỉ cần EQ để quản lý cảm xúc",
-"IQ + EQ + tư duy sáng tạo để làm chủ công nghệ",
-"Phó thác hoàn toàn cho trí tuệ nhân tạo"
-],
-correct:2
-},
-
-{
-question:"Nghiên cứu khoa học cho thấy điều gì về mối quan hệ giữa EQ và thành công trong cuộc sống?",
-answers:[
-"IQ cao là yếu tố duy nhất quyết định thành công",
-"EQ đóng góp lớn vào thành công bên cạnh IQ",
-"Chỉ cần IQ trên 120 là chắc chắn thành công",
-"IQ và EQ không liên quan đến thành công"
+"Im lặng hoàn toàn"
 ],
 correct:1
+},
+
+{
+question:"Trong học tập, IQ giúp ích nhiều nhất ở khả năng nào?",
+answers:[
+"Suy luận và tiếp thu kiến thức",
+"Chơi game nhanh",
+"Hát hay hơn",
+"Ghi nhớ bài hát"
+],
+correct:0
+},
+
+{
+question:"Sự kết hợp nào giúp con người phát triển toàn diện hơn?",
+answers:[
+"Chỉ IQ cao",
+"Chỉ EQ cao",
+"Kết hợp cả IQ và EQ",
+"Không cần IQ và EQ"
+],
+correct:2
 }
 
 ];
@@ -443,7 +450,7 @@ nextBtn.addEventListener("click",()=>{
         answersEl.innerHTML = "";
 
         resultEl.innerHTML =
-        "Cảm ơn bạn đã tham gia chương trình tìm hiểu lịch sử 19/5";
+        "Cảm ơn bạn đã tham gia bài Quiz IQ & EQ";
 
         nextBtn.style.display = "none";
 
@@ -452,5 +459,6 @@ nextBtn.addEventListener("click",()=>{
 });
 
 </script>
+
 </body>
 </html>
