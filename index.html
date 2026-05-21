@@ -54,8 +54,6 @@ body::before{
     }
 }
 
-/* START SCREEN */
-
 .start-screen{
     position:fixed;
     inset:0;
@@ -79,7 +77,6 @@ body::before{
     padding:50px;
     border-radius:25px;
     background:rgba(0,0,0,0.55);
-    backdrop-filter:blur(10px);
     border:2px solid rgba(255,215,0,0.3);
     box-shadow:0 0 40px rgba(255,215,0,0.2);
 }
@@ -89,7 +86,6 @@ body::before{
     font-weight:800;
     color:#ffd700;
     margin-bottom:20px;
-    text-shadow:0 0 25px rgba(255,215,0,0.7);
 }
 
 .start-subtitle{
@@ -116,10 +112,7 @@ body::before{
 
 .start-btn:hover{
     transform:scale(1.05);
-    box-shadow:0 0 30px rgba(255,215,0,0.6);
 }
-
-/* QUIZ */
 
 .quiz-box{
     width:900px;
@@ -130,7 +123,6 @@ body::before{
     padding:40px;
     position:relative;
     z-index:10;
-    backdrop-filter:blur(10px);
     box-shadow:
     0 0 25px rgba(255,215,0,0.15),
     0 0 70px rgba(0,0,0,0.7);
@@ -143,7 +135,6 @@ body::before{
     color:#ffd700;
     font-size:52px;
     font-weight:800;
-    letter-spacing:3px;
     margin-bottom:10px;
 }
 
@@ -299,45 +290,62 @@ body::before{
 
 </div>
 
-<audio id="correctSound">
-<source src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3">
-</audio>
-
-<audio id="wrongSound">
-<source src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3">
-</audio>
-
 <script>
 
 const quizData = [
 
 {
 question:"IQ (Intelligence Quotient) đo lường khả năng nào của con người?",
-answers:["Khả năng kiểm soát cảm xúc","Khả năng tư duy, lập luận và giải quyết vấn đề","Khả năng giao tiếp xã hội","Khả năng thể chất và sức bền"],
+answers:[
+"Khả năng kiểm soát cảm xúc",
+"Khả năng tư duy, lập luận và giải quyết vấn đề",
+"Khả năng giao tiếp xã hội",
+"Khả năng thể chất và sức bền"
+],
 correct:1
 },
 
 {
 question:"EQ (Emotional Quotient) quan trọng nhất ở điểm nào trong môi trường làm việc nhóm?",
-answers:["Tính toán nhanh hơn đồng nghiệp","Hiểu và quản lý cảm xúc bản thân, đồng cảm với người khác","Ghi nhớ nhiều thông tin hơn","Hoàn thành công việc độc lập không cần ai"],
+answers:[
+"Tính toán nhanh hơn đồng nghiệp",
+"Hiểu và quản lý cảm xúc bản thân, đồng cảm với người khác",
+"Ghi nhớ nhiều thông tin hơn",
+"Hoàn thành công việc độc lập không cần ai"
+],
 correct:1
 },
 
 {
 question:"Khi gặp thất bại, người có EQ cao thường phản ứng như thế nào?",
-answers:["Bỏ cuộc ngay lập tức","Đổ lỗi cho người khác","Nhìn nhận bình tĩnh, rút kinh nghiệm và tiếp tục cố gắng","Tức giận và không kiểm soát được"],
+answers:[
+"Bỏ cuộc ngay lập tức",
+"Đổ lỗi cho người khác",
+"Nhìn nhận bình tĩnh, rút kinh nghiệm và tiếp tục cố gắng",
+"Tức giận và không kiểm soát được"
+],
 correct:2
 },
 
 {
 question:"Trong thời đại AI, sự kết hợp nào giúp con người phát triển bền vững nhất?",
-answers:["Chỉ cần IQ cao để lập trình AI","Chỉ cần EQ để quản lý cảm xúc","IQ + EQ + tư duy sáng tạo để làm chủ công nghệ","Phó thác hoàn toàn cho trí tuệ nhân tạo"],
+answers:[
+"Chỉ cần IQ cao để lập trình AI",
+"Chỉ cần EQ để quản lý cảm xúc",
+"IQ + EQ + tư duy sáng tạo để làm chủ công nghệ",
+"Phó thác hoàn toàn cho trí tuệ nhân tạo"
+],
 correct:2
 },
 
 {
 question:"Nghiên cứu khoa học cho thấy điều gì về mối quan hệ giữa EQ và thành công trong cuộc sống?",
-answers:["IQ cao là yếu tố duy nhất quyết định thành công","EQ đóng góp đến ~80% vào thành công, IQ chỉ ~20%","Chỉ cần IQ trên 120 là chắc chắn thành công","IQ và EQ không liên quan đến thành công"],
+answers:[
+"IQ cao là yếu tố duy nhất quyết định thành công",
+"EQ đóng góp lớn vào thành công bên cạnh IQ",
+"Chỉ cần IQ trên 120 là chắc chắn thành công",
+"IQ và EQ không liên quan đến thành công"
+],
 correct:1
 }
 
@@ -349,9 +357,6 @@ const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
 const resultEl = document.getElementById("result");
 const nextBtn = document.getElementById("nextBtn");
-
-const correctSound = document.getElementById("correctSound");
-const wrongSound = document.getElementById("wrongSound");
 
 const startBtn = document.getElementById("startBtn");
 const startScreen = document.getElementById("startScreen");
@@ -406,17 +411,15 @@ function checkAnswer(index,button){
 
         resultEl.innerHTML = "CHÍNH XÁC";
 
-        correctSound.play();
-
     }else{
 
         button.classList.add("wrong");
 
-        buttons[current.correct].classList.add("correct");
+        if(buttons[current.correct]){
+            buttons[current.correct].classList.add("correct");
+        }
 
         resultEl.innerHTML = "ĐÁP ÁN CHƯA ĐÚNG";
-
-        wrongSound.play();
 
     }
 
@@ -449,6 +452,5 @@ nextBtn.addEventListener("click",()=>{
 });
 
 </script>
-
 </body>
 </html>
