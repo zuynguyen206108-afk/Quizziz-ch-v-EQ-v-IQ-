@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz 19/5 - Chủ tịch Hồ Chí Minh</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Be Vietnam Pro',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+
+    background:
+    linear-gradient(rgba(80,0,0,0.75),rgba(20,0,0,0.88)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:700px;
+    background:radial-gradient(circle,#ffd70055,transparent 70%);
+    top:-150px;
+    right:-150px;
+    animation: glow 5s infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        transform:scale(1);
+        opacity:0.5;
+    }
+    to{
+        transform:scale(1.2);
+        opacity:0.9;
+    }
+}
+
+/* START SCREEN */
+
+.start-screen{
+    position:fixed;
+    inset:0;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.75),rgba(40,0,0,0.9)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+}
+
+.start-content{
+    text-align:center;
+    padding:50px;
+    border-radius:25px;
+    background:rgba(0,0,0,0.55);
+    backdrop-filter:blur(10px);
+    border:2px solid rgba(255,215,0,0.3);
+    box-shadow:0 0 40px rgba(255,215,0,0.2);
+}
+
+.start-title{
+    font-size:70px;
+    font-weight:800;
+    color:#ffd700;
+    margin-bottom:20px;
+    text-shadow:0 0 25px rgba(255,215,0,0.7);
+}
+
+.start-subtitle{
+    color:white;
+    font-size:24px;
+    line-height:1.7;
+    margin-bottom:40px;
+}
+
+.start-btn{
+    padding:20px 60px;
+    border:none;
+    border-radius:18px;
+    font-size:28px;
+    font-weight:800;
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#ffd700,#ff9800);
+
+    color:#4b0000;
+
+    transition:0.35s;
+}
+
+.start-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 30px rgba(255,215,0,0.6);
+}
+
+/* QUIZ */
+
+.quiz-box{
+    width:900px;
+    max-width:95%;
+    background:rgba(10,10,10,0.82);
+    border:2px solid rgba(255,215,0,0.4);
+    border-radius:22px;
+    padding:40px;
+    position:relative;
+    z-index:10;
+    backdrop-filter:blur(10px);
+    box-shadow:
+    0 0 25px rgba(255,215,0,0.15),
+    0 0 70px rgba(0,0,0,0.7);
+
+    display:none;
+}
+
+.top-title{
+    text-align:center;
+    color:#ffd700;
+    font-size:52px;
+    font-weight:800;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
+
+.sub-title{
+    text-align:center;
+    color:#eee;
+    font-size:20px;
+    margin-bottom:40px;
+}
+
+.question-box{
+    background:linear-gradient(135deg,#7a0000,#410000);
+    border-left:6px solid #ffd700;
+    padding:28px;
+    border-radius:18px;
+    margin-bottom:30px;
+}
+
+.question{
+    color:white;
+    font-size:30px;
+    line-height:1.6;
+    font-weight:700;
+}
+
+.answers{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.answers button{
+    padding:22px;
+    border:none;
+    border-radius:16px;
+    background:rgba(255,255,255,0.08);
+    color:white;
+    font-size:19px;
+    cursor:pointer;
+    transition:0.35s;
+}
+
+.answers button:hover{
+    transform:translateY(-5px);
+    background:rgba(255,215,0,0.15);
+}
+
+.correct{
+    background:linear-gradient(135deg,#00a63e,#005d22)!important;
+}
+
+.wrong{
+    background:linear-gradient(135deg,#c00000,#5f0000)!important;
+}
+
+.result{
+    margin-top:28px;
+    text-align:center;
+    font-size:30px;
+    font-weight:800;
+    color:#ffd700;
+    min-height:40px;
+}
+
+.next-btn{
+    margin-top:25px;
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(135deg,#ffd700,#ffae00);
+    color:#300000;
+    font-size:22px;
+    font-weight:800;
+    cursor:pointer;
+    display:none;
+}
+
+.footer{
+    margin-top:35px;
+    text-align:center;
+    color:#cccccc;
+    font-size:15px;
+}
+
+@media(max-width:768px){
+
+    .top-title{
+        font-size:36px;
+    }
+
+    .question{
+        font-size:24px;
+    }
+
+    .answers{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="start-screen" id="startScreen">
+
+    <div class="start-content">
+
+        <div class="start-title">
+            QUIZ 19/5
+        </div>
+
+        <div class="start-subtitle">
+            Chủ đề:<br>
+            Chủ tịch Hồ Chí Minh • IQ & EQ
+        </div>
+
+        <button class="start-btn" id="startBtn">
+            BẮT ĐẦU
+        </button>
+
+    </div>
+
+</div>
+
+<div class="quiz-box" id="quizBox">
+
+    <div class="top-title">
+        QUIZ 19/5
+    </div>
+
+    <div class="sub-title">
+        Chủ đề: Chủ tịch Hồ Chí Minh • Người trẻ • IQ & EQ thời đại AI
+    </div>
+
+    <div class="question-box">
+        <div class="question" id="question"></div>
+    </div>
+
+    <div class="answers" id="answers"></div>
+
+    <div class="result" id="result"></div>
+
+    <button class="next-btn" id="nextBtn">
+        TIẾP TỤC →
+    </button>
+
+    <div class="footer">
+        Kỷ niệm ngày sinh Chủ tịch Hồ Chí Minh • 19/5
+    </div>
+
+</div>
+
+<audio id="correctSound">
+<source src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3">
+</audio>
+
+<audio id="wrongSound">
+<source src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3">
+</audio>
+
+<script>
+
+const quizData = [
+
+{
+question:"IQ (Intelligence Quotient) đo lường khả năng nào của con người?",
+answers:["Khả năng kiểm soát cảm xúc","Khả năng tư duy, lập luận và giải quyết vấn đề","Khả năng giao tiếp xã hội","Khả năng thể chất và sức bền"],
+correct:1
+},
+
+{
+question:"EQ (Emotional Quotient) quan trọng nhất ở điểm nào trong môi trường làm việc nhóm?",
+answers:["Tính toán nhanh hơn đồng nghiệp","Hiểu và quản lý cảm xúc bản thân, đồng cảm với người khác","Ghi nhớ nhiều thông tin hơn","Hoàn thành công việc độc lập không cần ai"],
+correct:1
+},
+
+{
+question:"Khi gặp thất bại, người có EQ cao thường phản ứng như thế nào?",
+answers:["Bỏ cuộc ngay lập tức","Đổ lỗi cho người khác","Nhìn nhận bình tĩnh, rút kinh nghiệm và tiếp tục cố gắng","Tức giận và không kiểm soát được"],
+correct:2
+},
+
+{
+question:"Trong thời đại AI, sự kết hợp nào giúp con người phát triển bền vững nhất?",
+answers:["Chỉ cần IQ cao để lập trình AI","Chỉ cần EQ để quản lý cảm xúc","IQ + EQ + tư duy sáng tạo để làm chủ công nghệ","Phó thác hoàn toàn cho trí tuệ nhân tạo"],
+correct:2
+},
+
+{
+question:"Nghiên cứu khoa học cho thấy điều gì về mối quan hệ giữa EQ và thành công trong cuộc sống?",
+answers:["IQ cao là yếu tố duy nhất quyết định thành công","EQ đóng góp đến ~80% vào thành công, IQ chỉ ~20%","Chỉ cần IQ trên 120 là chắc chắn thành công","IQ và EQ không liên quan đến thành công"],
+correct:1
+}
+
+];
+
+let currentQuestion = 0;
+
+const questionEl = document.getElementById("question");
+const answersEl = document.getElementById("answers");
+const resultEl = document.getElementById("result");
+const nextBtn = document.getElementById("nextBtn");
+
+const correctSound = document.getElementById("correctSound");
+const wrongSound = document.getElementById("wrongSound");
+
+const startBtn = document.getElementById("startBtn");
+const startScreen = document.getElementById("startScreen");
+const quizBox = document.getElementById("quizBox");
+
+startBtn.addEventListener("click",()=>{
+
+    startScreen.style.display = "none";
+    quizBox.style.display = "block";
+
+    loadQuestion();
+
+});
+
+function loadQuestion(){
+
+    resultEl.innerHTML = "";
+    nextBtn.style.display = "none";
+
+    const current = quizData[currentQuestion];
+
+    questionEl.innerHTML =
+    `Câu ${currentQuestion + 1}: ${current.question}`;
+
+    answersEl.innerHTML = "";
+
+    current.answers.forEach((answer,index)=>{
+
+        const button = document.createElement("button");
+
+        button.innerHTML = answer;
+
+        button.addEventListener("click",()=>checkAnswer(index,button));
+
+        answersEl.appendChild(button);
+
+    });
+
+}
+
+function checkAnswer(index,button){
+
+    const current = quizData[currentQuestion];
+
+    const buttons = answersEl.querySelectorAll("button");
+
+    buttons.forEach(btn=>btn.disabled = true);
+
+    if(index === current.correct){
+
+        button.classList.add("correct");
+
+        resultEl.innerHTML = "CHÍNH XÁC";
+
+        correctSound.play();
+
+    }else{
+
+        button.classList.add("wrong");
+
+        buttons[current.correct].classList.add("correct");
+
+        resultEl.innerHTML = "ĐÁP ÁN CHƯA ĐÚNG";
+
+        wrongSound.play();
+
+    }
+
+    nextBtn.style.display = "block";
+
+}
+
+nextBtn.addEventListener("click",()=>{
+
+    currentQuestion++;
+
+    if(currentQuestion < quizData.length){
+
+        loadQuestion();
+
+    }else{
+
+        questionEl.innerHTML =
+        "HOÀN THÀNH PHẦN THI";
+
+        answersEl.innerHTML = "";
+
+        resultEl.innerHTML =
+        "Cảm ơn bạn đã tham gia chương trình tìm hiểu lịch sử 19/5";
+
+        nextBtn.style.display = "none";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
